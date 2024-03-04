@@ -2,8 +2,21 @@
 
 export  function App () {
     return (
-        <div>
-            <h1>Twitter Card</h1>
-        </div>
+        <article>
+            <header>
+                <img alt="El avastar de midudev" src="https://unavatar.io/midudev"  />
+                <div>
+                    <strong>
+                        Miguel Angel Durán
+                    </strong>
+                    <span>@midudev</span>
+                </div>
+            </header>
+            <aside>
+                <button>
+                    Seguir
+                </button>
+            </aside>
+        </article>
     )
 }
