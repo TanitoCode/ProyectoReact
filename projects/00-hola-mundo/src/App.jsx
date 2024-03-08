@@ -5,16 +5,16 @@ import { TwitterFollowCard } from './TwitterFollowCard'
 export function App() {
     const formatUsername = (userName) => `@${userName}`
 
-    const [name, setName] = useState('midudev')
+    
 
-    console.log('render with name: ', name)
+    
    
     return (
         <section className='App'>
             <TwitterFollowCard
                 formaUsername={formatUsername}
                 
-                userName={name}>
+                userName="midudev" initialIsFollowing={true}>
                 Miguel Angel Durán
             </TwitterFollowCard>
 
@@ -32,9 +32,8 @@ export function App() {
                 Vanderhart 
             </TwitterFollowCard>
 
-            <button onClick={() => setName('Simon')}> 
-            Cambio Nombre
-            </button>
+          
+           
         </section>
     )
 }
