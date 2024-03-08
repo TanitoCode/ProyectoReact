@@ -1,15 +1,20 @@
+import { useState } from 'react'
 import './App.css'
 import { TwitterFollowCard } from './TwitterFollowCard'
 
 export function App() {
     const formatUsername = (userName) => `@${userName}`
+
+    const [name, setName] = useState('midudev')
+
+    console.log('render with name: ', name)
    
     return (
         <section className='App'>
             <TwitterFollowCard
                 formaUsername={formatUsername}
                 
-                userName="midudev">
+                userName={name}>
                 Miguel Angel Durán
             </TwitterFollowCard>
 
@@ -26,6 +31,10 @@ export function App() {
                 userName="vxnder">
                 Vanderhart 
             </TwitterFollowCard>
+
+            <button onClick={() => setName('Simon')}> 
+            Cambio Nombre
+            </button>
         </section>
     )
 }
