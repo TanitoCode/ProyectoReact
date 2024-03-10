@@ -79,7 +79,9 @@ function App() {
     //revisar si hay un ganador
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
+      //La actualizacion de los estado en react es asincronos
       setWinner(newWinner)
+      //alert(`El ganador es ${newWinner}`)
     }
   }
 
