@@ -15,9 +15,11 @@ const Square = ({ children, updateBoard, index}) => {
 }
 
 function App() {
-  const board = Array(9).fill(null)
+  const [board, setBoard] = useState(Array(9).fill(null))
 
-  
+  const [turn, setTurn] = useState(TURNS.X)
+
+
   return (
     <main className='board'>
       <h1>Ta Te Ti</h1>
