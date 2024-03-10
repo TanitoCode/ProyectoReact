@@ -11,7 +11,7 @@ const Square = ({ children, isSelected, updateBoard, index }) => {
   const className = `square ${isSelected ? 'is-selected' : ''}`
 
   const handleClick = () => {
-    updateBoard()
+    updateBoard(index)
   }
 
   return (
@@ -25,9 +25,24 @@ function App() {
   const [board, setBoard] = useState(Array(9).fill(null))
 
   const [turn, setTurn] = useState(TURNS.X)
+  
 
-  const updateBoard = () => {
+  const updateBoard = (index) => {
+    //no actualizamos esta posicion si ya tiene algo
+    if (board[index]) return
+
+    const newBoard = [...board]
+
+    //spread y rest operator 
+    // structureclone
+
+    //Actualizar el tablero
+    newBoard[index] = turn
+    setBoard(newBoard)
+
+    //Cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
+    setTurn(newTurn)
   }
 
   return (
