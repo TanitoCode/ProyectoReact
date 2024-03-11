@@ -30,7 +30,7 @@ const WINNER_COMBOS = [
   [2, 5, 8],
   [0, 4, 8],
   [2, 4, 6]
-  
+
 ]
 
 function App() {
@@ -64,6 +64,12 @@ function App() {
     setWinner(null)
   }
 
+  const checkEndGame = (newBoard) => {
+    //revisamos si hay un empate
+    // si no hay mas espacios vacios en el tablero
+    return newBoard.every((square) => square != null)
+  }
+
   const updateBoard = (index) => {
     //no actualizamos esta posicion si ya tiene algo
     //o tenemos un ganador
@@ -88,23 +94,27 @@ function App() {
       //La actualizacion de los estado en react es asincronos
       setWinner(newWinner)
       //alert(`El ganador es ${newWinner}`)
-    } //Check is game is over
+      //Check is game is over
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false)
+    }
 
   }
 
   return (
     <main className='board'>
       <h1>Ta Te Ti</h1>
+      <button onClick={resetGame}>Reset del juego</button>
       <section className='game'>
         {
-          board.map((_, index) => {
+          board.map((square, index) => {
             return (
               <Square
                 key={index}
                 index={index}
                 updateBoard={updateBoard}
               >
-                {board[index]}
+                {square}
               </Square>
             )
           })
@@ -123,24 +133,24 @@ function App() {
       {
         winner != null && (
           <section className="winner">
-              <div className="text">
-                <h2>
-                  {
-                    winner === false
+            <div className="text">
+              <h2>
+                {
+                  winner === false
                     ? 'Empate'
-                    : 'Gano:' 
-                  }
-                  
-                </h2>
+                    : 'Gano:'
+                }
 
-                <header className="win">
-                  {winner && <Square>{winner}</Square>}
-                </header>
+              </h2>
 
-                <footer>
-                  <button onClick={resetGame}>Empezar de nuevo</button>
-                </footer>
-              </div>
+              <header className="win">
+                {winner && <Square>{winner}</Square>}
+              </header>
+
+              <footer>
+                <button onClick={resetGame}>Empezar de nuevo</button>
+              </footer>
+            </div>
           </section>
         )
       }
